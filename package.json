@@ -9,12 +9,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "expo": "~51.0.14",
     "expo-status-bar": "~1.12.1",
-    "nativewind": "^4.0.1",
+    "nativewind": "^4.0.36",
     "react": "18.2.0",
     "react-native": "0.74.2",
-    "react-native-reanimated": "~3.10.1"
+    "react-native-reanimated": "~3.10.1",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
