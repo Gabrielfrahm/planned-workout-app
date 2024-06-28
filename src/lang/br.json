@@ -4,7 +4,12 @@
       "title": "Escolha Linguagem"
     },
     "signIn": {
-      "title": "Inscreva-se"
+      "title": "Entrar",
+      "button": "Enviar",
+      "link": {
+        "text": "Você ainda não tem uma conta?",
+        "text2": "Registrar-se"
+      }
     },
     "welcome": {
       "step1": {

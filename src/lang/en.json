@@ -4,7 +4,12 @@
       "title": "Choice Language"
     },
     "signIn": {
-      "title": "Sign-In"
+      "title": "Sign-In",
+      "button": "Send",
+      "link": {
+        "text": "you don't have account?",
+        "text2": "Sign-up"
+      }
     },
     "welcome": {
       "step1": {

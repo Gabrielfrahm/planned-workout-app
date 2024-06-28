@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         ...fonts,
       },
+      spacing: {
+        300: "22rem",
+      },
     },
   },
   plugins: [],

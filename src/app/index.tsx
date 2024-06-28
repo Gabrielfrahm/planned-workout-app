@@ -9,8 +9,11 @@ import {
   Roboto_700Bold_Italic,
   useFonts,
 } from "@expo-google-fonts/roboto";
+import { useConfigStore } from "@/store/config.store";
 
 export default function Index() {
+  const isPassToBegging = useConfigStore((set) => set.isPassToBegging);
+
   let [fontsLoaded, fontError] = useFonts({
     Roboto_300Light,
     Roboto_300Light_Italic,
@@ -24,5 +27,8 @@ export default function Index() {
     return null;
   }
 
+  if (isPassToBegging) {
+    return <Redirect href="/signIn" />;
+  }
   return <Redirect href="/welcome" />;
 }
