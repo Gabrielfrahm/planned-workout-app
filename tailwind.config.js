@@ -1,4 +1,6 @@
 import { colors } from "./src/styles/colors";
+import { fonts } from "./src/styles/fonts";
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -6,8 +8,7 @@ module.exports = {
     extend: {
       colors,
       fontFamily: {
-        example: "Roboto_100Thin_Italic",
-        test: "Roboto_400Regular",
+        ...fonts,
       },
     },
   },

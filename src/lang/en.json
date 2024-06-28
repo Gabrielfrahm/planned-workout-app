@@ -1,7 +1,24 @@
 {
   "translation": {
+    "ChangeComponentTranslation": {
+      "title": "Choice Language"
+    },
     "signIn": {
       "title": "Sign-In"
+    },
+    "welcome": {
+      "step1": {
+        "text": "The purpose of the application is to map training, as well as rest time and waiting time to use equipment.",
+        "textNextStep": "Next"
+      },
+      "step2": {
+        "text": "The App also works offline, so don't worry, you can synchronize your workouts later.",
+        "textPrevStep": "Prev",
+        "textNextStep": "Next"
+      },
+      "step3": {
+        "buttonText": "Start"
+      }
     }
   }
 }

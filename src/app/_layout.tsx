@@ -9,9 +9,9 @@ export default function Layout() {
         statusBarColor: "#54A651",
       }}
     >
+      <Stack.Screen name="welcome/index" />
       <Stack.Screen name="signIn/index" />
       <Stack.Screen name="signUp/index" />
-      <Stack.Screen name="wellcome/index" />
     </Stack>
   );
 }

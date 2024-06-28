@@ -1,7 +1,24 @@
 {
   "translation": {
+    "ChangeComponentTranslation": {
+      "title": "Escolha Linguagem"
+    },
     "signIn": {
       "title": "Inscreva-se"
+    },
+    "welcome": {
+      "step1": {
+        "text": "Objetivo do aplicativo é mapear o treino, assim como tempo de descanso e espera para usar um equipamento.",
+        "textNextStep": "Proximo"
+      },
+      "step2": {
+        "text": "O Aplicativo funciona também funciona offline, então não se preocupe, você pode sincronizar seus treinos posteriormente.",
+        "textPrevStep": "Anterior",
+        "textNextStep": "Proximo"
+      },
+      "step3": {
+        "buttonText": "Começar"
+      }
     }
   }
 }
