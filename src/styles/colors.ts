@@ -4,4 +4,5 @@ export const colors = {
   "dark-green": "#1D731A",
   green: "#54A651",
   white: "#F2F2F2",
+  error: "#ff5555",
 };

@@ -13,6 +13,7 @@
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
     "@expo-google-fonts/roboto": "^0.2.3",
+    "@hookform/resolvers": "^3.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "eslint-config-prettier": "^9.1.0",
@@ -29,6 +30,7 @@
     "nativewind": "^4.0.36",
     "prettier": "^3.3.2",
     "react": "18.2.0",
+    "react-hook-form": "^7.52.0",
     "react-i18next": "^14.1.2",
     "react-native": "0.74.2",
     "react-native-mmkv": "^2.12.2",
@@ -38,6 +40,7 @@
     "react-native-svg": "15.2.0",
     "react-native-svg-transformer": "^1.4.0",
     "tailwind-merge": "^2.3.0",
+    "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

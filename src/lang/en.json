@@ -9,6 +9,11 @@
       "link": {
         "text": "you don't have account?",
         "text2": "Sign-up"
+      },
+      "inputs": {
+        "errors": {
+          "email": "please enter a valid e-mail"
+        }
       }
     },
     "welcome": {

@@ -9,6 +9,11 @@
       "link": {
         "text": "Você ainda não tem uma conta?",
         "text2": "Registrar-se"
+      },
+      "inputs": {
+        "errors": {
+          "email": "por favor entre com um e-mail valido."
+        }
       }
     },
     "welcome": {
