@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "a name",
+      "email": "b@teste.com"
+    },
+    {
+      "id": "2",
+      "name": "b name",
+      "email": "teste@teste.com"
+    }
+  ],
+  "tokens": [
+    {
+      "token": "string",
+      "userID": "1"
+    }
+  ]
+}
