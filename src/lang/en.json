@@ -3,6 +3,20 @@
     "ChangeComponentTranslation": {
       "title": "Choice Language"
     },
+    "welcome": {
+      "step1": {
+        "text": "The purpose of the application is to map training, as well as rest time and waiting time to use equipment.",
+        "textNextStep": "Next"
+      },
+      "step2": {
+        "text": "The App also works offline, so don't worry, you can synchronize your workouts later.",
+        "textPrevStep": "Prev",
+        "textNextStep": "Next"
+      },
+      "step3": {
+        "buttonText": "Start"
+      }
+    },
     "signIn": {
       "title": "Sign-In",
       "button": "Send",
@@ -16,18 +30,18 @@
         }
       }
     },
-    "welcome": {
-      "step1": {
-        "text": "The purpose of the application is to map training, as well as rest time and waiting time to use equipment.",
-        "textNextStep": "Next"
+    "signUp": {
+      "title": "Sign-In",
+      "button": "Send",
+      "link": {
+        "text": "you have account?",
+        "text2": "Sign-in"
       },
-      "step2": {
-        "text": "The App also works offline, so don't worry, you can synchronize your workouts later.",
-        "textPrevStep": "Prev",
-        "textNextStep": "Next"
-      },
-      "step3": {
-        "buttonText": "Start"
+      "inputs": {
+        "errors": {
+          "email": "please enter a valid e-mail.",
+          "name": "The name is required."
+        }
       }
     }
   }

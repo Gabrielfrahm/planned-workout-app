@@ -3,6 +3,20 @@
     "ChangeComponentTranslation": {
       "title": "Escolha Linguagem"
     },
+    "welcome": {
+      "step1": {
+        "text": "Objetivo do aplicativo é mapear o treino, assim como tempo de descanso e espera para usar um equipamento.",
+        "textNextStep": "Proximo"
+      },
+      "step2": {
+        "text": "O Aplicativo funciona também funciona offline, então não se preocupe, você pode sincronizar seus treinos posteriormente.",
+        "textPrevStep": "Anterior",
+        "textNextStep": "Proximo"
+      },
+      "step3": {
+        "buttonText": "Começar"
+      }
+    },
     "signIn": {
       "title": "Entrar",
       "button": "Enviar",
@@ -16,18 +30,18 @@
         }
       }
     },
-    "welcome": {
-      "step1": {
-        "text": "Objetivo do aplicativo é mapear o treino, assim como tempo de descanso e espera para usar um equipamento.",
-        "textNextStep": "Proximo"
+    "signUp": {
+      "title": "Criar conta",
+      "button": "Enviar",
+      "link": {
+        "text": "Você ja possui tem uma conta?",
+        "text2": "Entrar"
       },
-      "step2": {
-        "text": "O Aplicativo funciona também funciona offline, então não se preocupe, você pode sincronizar seus treinos posteriormente.",
-        "textPrevStep": "Anterior",
-        "textNextStep": "Proximo"
-      },
-      "step3": {
-        "buttonText": "Começar"
+      "inputs": {
+        "errors": {
+          "email": "por favor entre com um e-mail valido.",
+          "name": "O nome não pode ser em branco."
+        }
       }
     }
   }

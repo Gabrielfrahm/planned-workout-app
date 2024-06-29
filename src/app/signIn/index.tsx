@@ -9,6 +9,7 @@ import { Mail } from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { checkInternetConnectivity } from "@/lib/network";
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -24,8 +25,9 @@ export default function SignIn() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: any) => {
-    Alert.alert("Successful", JSON.stringify(data));
+  const onSubmit = async (data: any) => {
+    const isNet = await checkInternetConnectivity();
+    Alert.alert("Successful", JSON.stringify(isNet));
   };
 
   return (
@@ -34,6 +36,7 @@ export default function SignIn() {
       <Text className="text-white  font-roboto-bold text-2xl m-6">
         {t("signIn.title")}
       </Text>
+
       <View className="justify-center items-center">
         <Controller
           control={control}
