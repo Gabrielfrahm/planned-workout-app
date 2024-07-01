@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { MMKVStorage } from "./mmkv.store";
 
-interface ConfigState {
+type ConfigState = {
   lang: string;
   setLang: (language: string) => void;
   isPassToBegging: boolean;
   setPassToBegging: (isPassToBegging: boolean) => void;
-}
+};
 
 const langMMKV = MMKVStorage.getString("lang");
 const isPassToBeggingMMKV = MMKVStorage.getBoolean("isPassToBegging");

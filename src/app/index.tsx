@@ -10,9 +10,11 @@ import {
   useFonts,
 } from "@expo-google-fonts/roboto";
 import { useConfigStore } from "@/store/config.store";
+import { useUserStore } from "@/store/user.store";
 
 export default function Index() {
   const isPassToBegging = useConfigStore((set) => set.isPassToBegging);
+  const token = useUserStore((state) => state.token);
 
   let [fontsLoaded, fontError] = useFonts({
     Roboto_300Light,
@@ -27,8 +29,13 @@ export default function Index() {
     return null;
   }
 
+  if (token) {
+    return <Redirect href="/(private)" />;
+  }
+
   if (isPassToBegging) {
     return <Redirect href="/signIn" />;
   }
+
   return <Redirect href="/welcome" />;
 }
