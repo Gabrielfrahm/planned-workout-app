@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import Logo from "@/styles/svgs/logo.svg";
 import { useTranslation } from "react-i18next";
 
@@ -14,11 +14,14 @@ import { checkInternetConnectivity } from "@/lib/network";
 import { AuthService } from "@/service/auth/auth.service";
 import Toast from "react-native-toast-message";
 import { useUserStore } from "@/store/user.store";
+import { useState } from "react";
+import Load from "@/components/Load";
+import { AppError } from "@/lib/error.type";
 
 export default function SignIn() {
   const { t } = useTranslation();
   const setToken = useUserStore((state) => state.setToken);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const formSchema = z.object({
     email: z.string().email(t("signIn.inputs.errors.email")),
   });
@@ -34,6 +37,7 @@ export default function SignIn() {
     const isNet = await checkInternetConnectivity();
 
     try {
+      setIsLoading(true);
       await AuthService(!isNet).authentication(data);
       Toast.show({
         type: "success",
@@ -42,12 +46,15 @@ export default function SignIn() {
         text1Style: { fontSize: 20 },
       });
       setToken("token");
+      setIsLoading(false);
       router.replace("/(private)");
     } catch (e) {
+      const err = e as AppError;
       Toast.show({
         type: "error",
-        text1: `${e}`,
+        text1: err.message,
       });
+      setIsLoading(false);
     }
   };
 
@@ -83,11 +90,15 @@ export default function SignIn() {
             </>
           )}
         />
-        <Button
-          label={t("signIn.button")}
-          className="w-[200px] m-6"
-          onPress={handleSubmit(onSubmit)}
-        />
+        {!isLoading ? (
+          <Button
+            label={t("signIn.button")}
+            className="w-[200px] m-6"
+            onPress={handleSubmit(onSubmit)}
+          />
+        ) : (
+          <Load size="large" />
+        )}
       </View>
       <Link href="/signUp" className="flex-row ">
         <Text className="text-white font-roboto-bold text-base">

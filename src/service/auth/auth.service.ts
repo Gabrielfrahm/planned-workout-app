@@ -8,8 +8,12 @@ async function authenticateViaApi(authData: AuthData) {
     const response = await api.post(ApiUrls.auth.authentications(), authData);
     return response.data;
   } catch (error) {
-    console.error("API authentication error:", error);
-    throw new Error("Failed to authenticate via API");
+    const err = error as {
+      message: string;
+    };
+    if (err.message.includes("Network Error")) {
+      return authenticateViaMMKV(authData);
+    }
   }
 }
 
@@ -17,12 +21,6 @@ async function authenticateViaMMKV(authData: AuthData) {
   const authentication = MMKVStorage.getString(`auth`);
   console.log(authentication);
   if (!authentication) {
-    // const authInfo = {
-    //   email: authData.email,
-    //   token: "3303785f-8c56-4b0c-8354-a19dbe9e3a56",
-    // };
-    // MMKVStorage.set(`auth:${authData.email}`, JSON.stringify(authInfo));
-    // authentication = JSON.stringify(authInfo);
     throw new Error("User not found");
   }
   return {
