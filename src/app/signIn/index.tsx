@@ -13,14 +13,13 @@ import { checkInternetConnectivity } from "@/lib/network";
 
 import { AuthService } from "@/service/auth/auth.service";
 import Toast from "react-native-toast-message";
-import { useUserStore } from "@/store/user.store";
+
 import { useState } from "react";
 import Load from "@/components/Load";
 import { AppError } from "@/lib/error.type";
 
 export default function SignIn() {
   const { t } = useTranslation();
-  const setToken = useUserStore((state) => state.setToken);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const formSchema = z.object({
     email: z.string().email(t("signIn.inputs.errors.email")),
@@ -39,13 +38,14 @@ export default function SignIn() {
     try {
       setIsLoading(true);
       await AuthService(!isNet).authentication(data);
+
       Toast.show({
         type: "success",
         text1: "Authenticated",
         text2: "Enjoy and workout👋",
         text1Style: { fontSize: 20 },
       });
-      setToken("token");
+
       setIsLoading(false);
       router.replace("/(private)");
     } catch (e) {

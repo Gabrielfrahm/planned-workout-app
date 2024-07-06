@@ -9,10 +9,12 @@ async function registerByApi(registerUserData: RegisterUserData) {
       ApiUrls.user.registerUser(),
       registerUserData,
     );
-    MMKVStorage.set("auth", response.data.token);
+
+    MMKVStorage.set(`userInfo`, JSON.stringify(response.data));
     return response.data;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (_e) {}
+  } catch (e) {
+    throw e;
+  }
 }
 
 export const UserService = (inMemory: boolean = false) => {

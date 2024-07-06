@@ -4,6 +4,9 @@ import { MMKVStorage } from "./mmkv.store";
 export type UserInfo = {
   name: string;
   email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt?: Date;
 };
 
 type UserStore = {
@@ -24,10 +27,10 @@ export const useUserStore = create<UserStore>((set) => ({
   },
   userInfo: userInfoMMKV ? JSON.parse(userInfoMMKV) : {},
   setUserInfo: (userInfo: UserInfo) => {
-    const { email, name } = userInfo;
-    const userInfoMMKVObject: UserInfo = JSON.parse(userInfoMMKV!);
-    userInfoMMKVObject.email = email;
-    userInfoMMKVObject.name = name;
+    const userInfoMMKVObject: UserInfo = userInfoMMKV
+      ? JSON.parse(userInfoMMKV)
+      : userInfo;
+
     MMKVStorage.set(`userInfo`, JSON.stringify(userInfoMMKVObject));
     set({ userInfo });
   },

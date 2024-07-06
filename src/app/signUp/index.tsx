@@ -59,9 +59,11 @@ export default function SignUp() {
       router.replace("/signIn");
     } catch (e) {
       const err = e as AppError;
+
       Toast.show({
         type: "error",
         text1: err.message,
+        text2: err.statusCode.toString(),
       });
       setIsLoading(false);
     }
