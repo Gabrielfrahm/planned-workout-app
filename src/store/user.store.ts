@@ -25,13 +25,9 @@ export const useUserStore = create<UserStore>((set) => ({
     MMKVStorage.set(`auth`, token);
     set({ token });
   },
-  userInfo: userInfoMMKV ? JSON.parse(userInfoMMKV) : {},
+  userInfo: userInfoMMKV ? JSON.parse(userInfoMMKV) : ({} as UserInfo),
   setUserInfo: (userInfo: UserInfo) => {
-    const userInfoMMKVObject: UserInfo = userInfoMMKV
-      ? JSON.parse(userInfoMMKV)
-      : userInfo;
-
-    MMKVStorage.set(`userInfo`, JSON.stringify(userInfoMMKVObject));
+    MMKVStorage.set(`userInfo`, JSON.stringify(userInfo));
     set({ userInfo });
   },
 }));

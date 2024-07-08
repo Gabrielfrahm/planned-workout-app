@@ -1,5 +1,6 @@
 import { MMKVStorage } from "@/store/mmkv.store";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { err } from "react-native-svg";
 
 console.log(process.env.EXPO_PUBLIC_API_URL);
 const api = axios.create({
@@ -25,6 +26,11 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 500) {
+        Promise.reject(new Error("Server Error"));
+      }
+    }
     if (error.response) {
       return Promise.reject(error.response.data);
     }

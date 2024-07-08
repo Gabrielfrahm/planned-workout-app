@@ -63,7 +63,6 @@ export default function SignUp() {
       Toast.show({
         type: "error",
         text1: err.message,
-        text2: err.statusCode.toString(),
       });
       setIsLoading(false);
     }

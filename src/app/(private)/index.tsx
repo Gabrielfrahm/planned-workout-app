@@ -1,5 +1,5 @@
 import { MMKVStorage } from "@/store/mmkv.store";
-import { useUserStore } from "@/store/user.store";
+import { UserInfo, useUserStore } from "@/store/user.store";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 
@@ -8,15 +8,16 @@ import {
   Text,
   TouchableOpacity,
   View,
-  SafeAreaView,
   ScrollView,
 } from "react-native";
-
+import { VictoryArea, VictoryChart, VictoryTheme } from "victory-native";
 const { width } = Dimensions.get("window");
 
 export default function Index() {
   const setToken = useUserStore((state) => state.setToken);
   const userInfo = useUserStore((state) => state.userInfo);
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
+
   const { t } = useTranslation();
   return (
     <ScrollView
@@ -37,7 +38,7 @@ export default function Index() {
             MMKVStorage.delete("auth");
             setToken("");
             MMKVStorage.delete(`userInfo`);
-
+            setUserInfo({} as UserInfo);
             router.replace("/signIn");
           }}
         >
@@ -63,7 +64,7 @@ export default function Index() {
         <Text className="m-0">Treino x semana</Text>
 
         <View className="bg-black min-w-[93%] min-h-300 justify-center items-center">
-          {/* <VictoryChart width={width * 0.9} theme={VictoryTheme.material}>
+          <VictoryChart width={width * 0.9} theme={VictoryTheme.material}>
             <VictoryArea
               style={{ data: { fill: "#54A651" } }}
               data={[
@@ -74,14 +75,14 @@ export default function Index() {
                 { x: 5, y: 6 },
               ]}
             />
-          </VictoryChart> */}
+          </VictoryChart>
         </View>
       </View>
       <View className="justify-center items-center">
         <Text className="m-0">Treino x semana</Text>
 
         <View className="bg-black min-w-[93%] min-h-300 justify-center items-center mb-32">
-          {/* <VictoryChart width={width * 0.9} theme={VictoryTheme.material}>
+          <VictoryChart width={width * 0.9} theme={VictoryTheme.material}>
             <VictoryArea
               style={{ data: { fill: "#54A651" } }}
               data={[
@@ -92,7 +93,7 @@ export default function Index() {
                 { x: 5, y: 6 },
               ]}
             />
-          </VictoryChart> */}
+          </VictoryChart>
         </View>
       </View>
     </ScrollView>
