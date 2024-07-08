@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import "../../styles/global.css";
 import Toast from "react-native-toast-message";
-import { Home, User } from "lucide-react-native";
+import { Dumbbell, Home, User } from "lucide-react-native";
 import { Dimensions, View } from "react-native";
 import useBackgroundSync from "@/lib/sync";
 import NetworkStatusNotifier from "@/components/networkInfo";
@@ -68,20 +68,20 @@ export default function Layout() {
               if (focused) {
                 return (
                   <View className="justify-center items-center w-24 h-24 relative bottom-6 rounded-full bg-black">
-                    <User color={"#54A651"} size={30} />
+                    <Dumbbell color={"#54A651"} size={30} />
                   </View>
                 );
               }
               return (
                 <View className="justify-center items-center w-24 h-24 relative bottom-6 rounded-full bg-black">
-                  <User color={"#F2F2F2"} size={30} />
+                  <Dumbbell color={"#F2F2F2"} size={30} />
                 </View>
               );
             },
           }}
         />
         <Tabs.Screen
-          name="profile"
+          name="profile/index"
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => {

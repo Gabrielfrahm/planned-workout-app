@@ -46,7 +46,8 @@
     },
     "home": {
       "welcome": "Welcome",
-      "logout": "Logout"
+      "logout": "Logout",
+      "mainButton": "workout of the day 💪"
     },
     "components": {
       "networkInfo": {

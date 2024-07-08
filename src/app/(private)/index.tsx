@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button";
 import { MMKVStorage } from "@/store/mmkv.store";
 import { UserInfo, useUserStore } from "@/store/user.store";
 import { router } from "expo-router";
@@ -42,8 +43,13 @@ export default function Index() {
             router.replace("/signIn");
           }}
         >
-          <Text>{t("home.logout")}</Text>
+          <Text className="text-white font-roboto-bold-italic">
+            {t("home.logout")}
+          </Text>
         </TouchableOpacity>
+      </View>
+      <View className="flex-row justify-center gap-4 items-center p-5">
+        <Button label={t("home.mainButton")} className="flex-1"></Button>
       </View>
 
       <View className="flex-row justify-center gap-4 items-center py-5">

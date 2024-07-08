@@ -46,7 +46,8 @@
     },
     "home": {
       "welcome": "Bem vindo",
-      "logout": "sair"
+      "logout": "sair",
+      "mainButton": "Treino do dia 💪"
     },
     "components": {
       "networkInfo": {
