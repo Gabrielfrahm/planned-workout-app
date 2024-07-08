@@ -43,6 +43,16 @@
           "name": "O nome não pode ser em branco."
         }
       }
+    },
+    "home": {
+      "welcome": "Bem vindo",
+      "logout": "sair"
+    },
+    "components": {
+      "networkInfo": {
+        "online": "Você esta online",
+        "offline": "Você esta offline"
+      }
     }
   }
 }

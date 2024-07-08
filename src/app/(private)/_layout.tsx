@@ -3,11 +3,15 @@ import "../../styles/global.css";
 import Toast from "react-native-toast-message";
 import { Home, User } from "lucide-react-native";
 import { Dimensions, View } from "react-native";
+import useBackgroundSync from "@/lib/sync";
+import NetworkStatusNotifier from "@/components/networkInfo";
 const { width } = Dimensions.get("window");
 
 export default function Layout() {
+  useBackgroundSync();
   return (
     <>
+      <NetworkStatusNotifier />
       <Tabs
         screenOptions={{
           headerShown: false,
