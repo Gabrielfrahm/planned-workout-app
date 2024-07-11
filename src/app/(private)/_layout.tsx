@@ -32,11 +32,13 @@ export default function Layout() {
             alignItems: "center",
             zIndex: 99,
           },
+          tabBarHideOnKeyboard: true,
         }}
       >
         <Tabs.Screen
           name="index"
           options={{
+            tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => {
               if (focused) {
@@ -61,7 +63,7 @@ export default function Layout() {
           }}
         />
         <Tabs.Screen
-          name="some"
+          name="workouts/index"
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => {
@@ -83,6 +85,7 @@ export default function Layout() {
         <Tabs.Screen
           name="profile/index"
           options={{
+            tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => {
               if (focused) {

@@ -48,7 +48,7 @@ export default function Index() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View className="flex-row justify-center gap-4 items-center p-5">
+      <View className="flex-row justify-center gap-4 items-center p-4">
         <Button label={t("home.mainButton")} className="flex-1"></Button>
       </View>
 

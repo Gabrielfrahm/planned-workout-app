@@ -5,4 +5,7 @@ export const ApiUrls = {
   user: {
     registerUser: (): string => `users`,
   },
+  workout: {
+    search: (): string => `workouts/search/workouts`,
+  },
 };
