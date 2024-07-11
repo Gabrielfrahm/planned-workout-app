@@ -1,9 +1,15 @@
 import api from "@/lib/api";
 import { ApiUrls } from "../api.url";
+import { ListWorkoutsResponse } from "./workout.dto";
 
 async function searchWorkout(params?: any) {
   try {
-    const response = await api.get(ApiUrls.workout.search());
+    const response = await api.get<ListWorkoutsResponse>(
+      ApiUrls.workout.search(),
+      {
+        params: params,
+      },
+    );
 
     return response.data;
   } catch (e) {
