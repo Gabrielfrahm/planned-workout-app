@@ -1,13 +1,16 @@
 import { Button } from "@/components/Button";
 import InputWithIcon from "@/components/Input-with-icons";
 import Load from "@/components/Load";
+import { AppError } from "@/lib/error.type";
+import { checkInternetConnectivity } from "@/lib/network";
 import { ListWorkoutsResponse } from "@/service/workout/workout.dto";
 import { WorkoutService } from "@/service/workout/workout.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BicepsFlexed, Search } from "lucide-react-native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ScrollView, Text, View } from "react-native";
+import Toast from "react-native-toast-message";
 import { z } from "zod";
 
 export default function Index() {
@@ -30,35 +33,46 @@ export default function Index() {
 
   const nameValue = watch("name");
 
-  useEffect(() => {
-    const fetchInitialWorkouts = async () => {
-      try {
-        setIsLoading(true);
-        const initialWorkouts = await WorkoutService().search();
-        setWorkouts(initialWorkouts);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        console.error("Failed to fetch initial workouts:", error);
-      }
-    };
-
-    fetchInitialWorkouts();
+  const fetchInitialWorkouts = useCallback(async () => {
+    const isNet = await checkInternetConnectivity();
+    try {
+      setIsLoading(true);
+      const initialWorkouts = await WorkoutService(!isNet).search();
+      setWorkouts(initialWorkouts);
+      setIsLoading(false);
+    } catch (error) {
+      const err = error as AppError;
+      Toast.show({
+        type: "error",
+        text1: err.message,
+      });
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
+    fetchInitialWorkouts();
+  }, [fetchInitialWorkouts]);
+
+  useEffect(() => {
     const performSearch = async () => {
+      const isNet = await checkInternetConnectivity();
+
       try {
         setIsLoading(true);
-        const work = await WorkoutService().search({
+        const work = await WorkoutService(!isNet).search({
           name: nameValue,
           perPage: perPage,
         });
         setWorkouts(work);
         setIsLoading(false);
       } catch (error) {
+        const err = error as AppError;
+        Toast.show({
+          type: "error",
+          text1: err.message,
+        });
         setIsLoading(false);
-        console.error("Failed to search workouts:", error);
       }
     };
 
@@ -106,8 +120,6 @@ export default function Index() {
         // keyboardDismissMode="on-drag"
         onScroll={({ nativeEvent }) => {
           const { layoutMeasurement, contentOffset, contentSize } = nativeEvent;
-          console.log("um", layoutMeasurement.height + contentOffset.y);
-          console.log("dois", contentSize.height - 100);
           if (
             layoutMeasurement.height + contentOffset.y >=
             contentSize.height - 100

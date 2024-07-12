@@ -18,7 +18,7 @@ async function searchWorkout(params?: any) {
     };
 
     if (err.message.includes("Network Error")) {
-      throw new Error("register user needs to be online");
+      throw new Error("list workouts only in online");
     }
     throw err;
   }
@@ -27,6 +27,7 @@ async function searchWorkout(params?: any) {
 export const WorkoutService = (inMemory: boolean = false) => {
   const search = async (params?: any) => {
     if (inMemory) {
+      console.log("aqui");
       throw new Error("list workouts only in online");
     } else {
       return searchWorkout(params);
