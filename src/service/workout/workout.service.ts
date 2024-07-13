@@ -24,10 +24,11 @@ async function searchWorkout(params?: any) {
   }
 }
 
+// async function registerNewWorkout() {}
+
 export const WorkoutService = (inMemory: boolean = false) => {
   const search = async (params?: any) => {
     if (inMemory) {
-      console.log("aqui");
       throw new Error("list workouts only in online");
     } else {
       return searchWorkout(params);
