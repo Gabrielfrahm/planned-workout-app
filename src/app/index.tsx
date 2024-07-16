@@ -30,7 +30,7 @@ export default function Index() {
   }
 
   if (token) {
-    return <Redirect href="/(private)" />;
+    return <Redirect href="/(tabs)" />;
   }
 
   if (isPassToBegging) {
