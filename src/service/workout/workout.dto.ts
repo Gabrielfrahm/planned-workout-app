@@ -23,4 +23,26 @@ export type RegisterANewWorkout = {
 
 export type GetExercisesByWorkoutIdCommand = {
   workoutId: string;
+  params?: any;
+};
+
+export type GetExercisesByWorkoutIdResponse = {
+  data: {
+    id: string;
+    name: string;
+    reps: number;
+    restTime: string;
+    sets: number;
+    techniques: string;
+    workoutId: string;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt?: Date;
+  }[];
+  meta: {
+    page: number;
+    perPage: number;
+    total: number;
+    lastPage: number;
+  };
 };

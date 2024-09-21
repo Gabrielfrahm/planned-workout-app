@@ -2,6 +2,7 @@ import api from "@/lib/api";
 import { ApiUrls } from "../api.url";
 import {
   GetExercisesByWorkoutIdCommand,
+  GetExercisesByWorkoutIdResponse,
   ListWorkoutsResponse,
   RegisterANewWorkout,
 } from "./workout.dto";
@@ -50,8 +51,11 @@ async function registerNewWorkout(data: RegisterANewWorkout) {
 
 async function getExercisesByWorkoutId(data: GetExercisesByWorkoutIdCommand) {
   try {
-    const response = await api.get<ListWorkoutsResponse>(
+    const response = await api.get<GetExercisesByWorkoutIdResponse>(
       ApiUrls.workout.getExercises(data.workoutId),
+      {
+        params: data.params,
+      },
     );
 
     return response.data;

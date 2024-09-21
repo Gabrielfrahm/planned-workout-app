@@ -62,6 +62,23 @@
         "register": "workout created"
       }
     },
+    "exercises": {
+      "workoutId": {
+        "name": "Name",
+        "sets": "Sets",
+        "reps": "Reps",
+        "restTime": "Rest Time"
+      },
+      "modal": {
+        "label": {
+          "name": "Name",
+          "sets": "Sets",
+          "reps": "Reps",
+          "restTime": "Rest Time",
+          "techniques": "Techniques"
+        }
+      }
+    },
     "components": {
       "networkInfo": {
         "online": "You are online",

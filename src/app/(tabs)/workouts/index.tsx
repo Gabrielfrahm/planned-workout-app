@@ -226,7 +226,7 @@ export default function Index() {
         {workouts.data?.map((workout) => (
           <View
             key={workout.id}
-            className="flex-row mb-8 items-center w-300 h-24 border-2 border-black rounded-[10]"
+            className="flex-row mb-8 items-center w-300 h-24 bg-black border-2 border-black rounded-[10]"
             onTouchEnd={() => router.navigate(`exercises/${workout.id}`)}
           >
             <View className="w-20 items-center">

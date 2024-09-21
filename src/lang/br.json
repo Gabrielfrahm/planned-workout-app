@@ -62,6 +62,23 @@
         "register": "treino criado"
       }
     },
+    "exercises": {
+      "workoutId": {
+        "name": "Nome",
+        "sets": "Sers",
+        "reps": "Reps",
+        "restTime": "descanso"
+      },
+      "modal": {
+        "label": {
+          "name": "Nome",
+          "sets": "Sers",
+          "reps": "Reps",
+          "restTime": "descanso",
+          "techniques": "Técnicas"
+        }
+      }
+    },
     "components": {
       "networkInfo": {
         "online": "Você esta online",

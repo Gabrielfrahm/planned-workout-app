@@ -6,6 +6,7 @@ interface ModalComponentProps extends ModalProps {
   readonly onClose: () => void;
   readonly onOk?: ReactNode;
   readonly title?: string;
+  readonly size?: boolean;
 }
 
 const ModalComponent = ({
@@ -14,6 +15,7 @@ const ModalComponent = ({
   children,
   onOk,
   title,
+  size,
 }: ModalComponentProps) => {
   return (
     <Modal
@@ -26,7 +28,7 @@ const ModalComponent = ({
     >
       <View className="flex-1 w-full justify-center items-center">
         <View
-          className={`bg-black w-300 flex-row ${title ? "justify-between" : "justify-end"} p-4 rounded-t-lg`}
+          className={`bg-black ${size ? "w-[350]" : "w-300"}  flex-row ${title ? "justify-between" : "justify-end"} p-4 rounded-t-lg`}
         >
           {title && (
             <Text className="text-dark-green font-roboto-bold text-lg">
