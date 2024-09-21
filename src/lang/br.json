@@ -49,6 +49,19 @@
       "logout": "sair",
       "mainButton": "Treino do dia 💪"
     },
+    "workout": {
+      "modal": {
+        "title": "Registrar um novo treino",
+        "input": "nome",
+        "button": "enviar"
+      },
+      "errors": {
+        "nameRegister": "nome é obrigatório"
+      },
+      "success": {
+        "register": "treino criado"
+      }
+    },
     "components": {
       "networkInfo": {
         "online": "Você esta online",

@@ -7,6 +7,7 @@ import { checkInternetConnectivity } from "@/lib/network";
 import { ListWorkoutsResponse } from "@/service/workout/workout.dto";
 import { WorkoutService } from "@/service/workout/workout.service";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { router } from "expo-router";
 import { BicepsFlexed, Search } from "lucide-react-native";
 import { useCallback, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -27,7 +28,7 @@ export default function Index() {
 
   const formSchemaRegisterNewWorkout = z.object({
     nameRegister: z.string().refine((data) => data.trim() !== "", {
-      message: t("workout.inputs.errors.nameRegister"),
+      message: t("workout.errors.nameRegister"),
     }),
   });
 
@@ -46,16 +47,19 @@ export default function Index() {
 
     try {
       setIsLoading(true);
-      // await AuthService(!isNet).authentication(data);
+      await WorkoutService(!isNet).register({
+        name: data.nameRegister,
+      });
 
       Toast.show({
         type: "success",
-        text1: t("workout.toast.success"),
+        text1: t("workout.success.register"),
       });
 
       setIsLoading(false);
       setIsModalOpen(false);
       reset();
+      await fetchInitialWorkouts();
     } catch (e) {
       const err = e as AppError;
       Toast.show({
@@ -156,7 +160,7 @@ export default function Index() {
             <Load size="large" />
           ) : (
             <Button
-              label="Register"
+              label={t("workout.modal.button")}
               className="flex-1"
               onPressOut={handleSubmit(onSubmit)}
             />
@@ -173,7 +177,7 @@ export default function Index() {
           }) => (
             <View className="flex-1 ">
               <Text className="text-white font-roboto-bold-italic text-md mb-2">
-                Name
+                {t("workout.modal.input")}
               </Text>
               <InputWithIcon
                 icon={
@@ -210,7 +214,7 @@ export default function Index() {
           const { layoutMeasurement, contentOffset, contentSize } = nativeEvent;
           if (
             layoutMeasurement.height + contentOffset.y >=
-            contentSize.height - 100
+            contentSize.height - 200
           ) {
             setIsLoading(true);
             setPerPage(perPage + 5);
@@ -223,7 +227,7 @@ export default function Index() {
           <View
             key={workout.id}
             className="flex-row mb-8 items-center w-300 h-24 border-2 border-black rounded-[10]"
-            onTouchEnd={() => console.log("entrou")}
+            onTouchEnd={() => router.navigate(`exercises/${workout.id}`)}
           >
             <View className="w-20 items-center">
               <BicepsFlexed size={30} color={"white"} />

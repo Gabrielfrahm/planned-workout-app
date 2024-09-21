@@ -16,3 +16,11 @@ export type ListWorkoutsResponse = {
     lastPage: number;
   };
 };
+
+export type RegisterANewWorkout = {
+  name: string;
+};
+
+export type GetExercisesByWorkoutIdCommand = {
+  workoutId: string;
+};

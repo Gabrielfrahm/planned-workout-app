@@ -49,6 +49,19 @@
       "logout": "Logout",
       "mainButton": "workout of the day 💪"
     },
+    "workout": {
+      "modal": {
+        "title": "Register a new Workout",
+        "input": "name",
+        "button": "send"
+      },
+      "errors": {
+        "nameRegister": "name is required"
+      },
+      "success": {
+        "register": "workout created"
+      }
+    },
     "components": {
       "networkInfo": {
         "online": "You are online",

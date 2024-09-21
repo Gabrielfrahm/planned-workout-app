@@ -47,7 +47,7 @@ export default function SignIn() {
       });
 
       setIsLoading(false);
-      router.replace("/(private)");
+      router.replace("/(tabs)");
     } catch (e) {
       const err = e as AppError;
       Toast.show({
