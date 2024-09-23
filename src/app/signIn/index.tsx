@@ -1,7 +1,7 @@
-import { Text, View, ActivityIndicator } from "react-native";
+import { Text, View, KeyboardAvoidingView } from "react-native";
 import Logo from "@/styles/svgs/logo.svg";
 import { useTranslation } from "react-i18next";
-
+import GoogleLogo from "@/styles/svgs/google-icon.svg";
 import InputWithIcon from "@/components/Input-with-icons";
 import { Button } from "@/components/Button";
 import { Link, router } from "expo-router";
@@ -10,7 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { checkInternetConnectivity } from "@/lib/network";
-
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { AuthService } from "@/service/auth/auth.service";
 import Toast from "react-native-toast-message";
 
@@ -58,57 +58,86 @@ export default function SignIn() {
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const { data, type } = await GoogleSignin.signIn();
+      alert(JSON.stringify(data));
+    } catch (error) {
+      console.log("Error", error);
+      alert(JSON.stringify(error));
+    }
+  };
+
   return (
     <View className="flex-1 justify-center items-center bg-grey">
-      <Logo />
-      <Text className="text-white  font-roboto-bold text-2xl m-6">
-        {t("signIn.title")}
-      </Text>
+      <KeyboardAvoidingView
+        className="flex-1 justify-center items-center"
+        behavior={"padding"}
+      >
+        <Logo />
+        <Text className="text-white  font-roboto-bold text-2xl m-6">
+          {t("signIn.title")}
+        </Text>
 
-      <View className="justify-center items-center">
-        <Controller
-          control={control}
-          name={"email"}
-          render={({
-            field: { value, onChange, onBlur },
-            fieldState: { error },
-          }) => (
-            <>
-              <InputWithIcon
-                icon={<Mail color={error?.message ? "#ff5555" : "#323640"} />}
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                keyboardType="email-address"
-                error={!!error?.message}
-              />
-              {error && (
-                <Text className="font-roboto-light-italic text-error">
-                  {error.message}
-                </Text>
-              )}
-            </>
-          )}
-        />
-        {!isLoading ? (
-          <Button
-            label={t("signIn.button")}
-            className="w-[200px] m-6"
-            onPress={handleSubmit(onSubmit)}
+        <View className="justify-center items-center">
+          <Controller
+            control={control}
+            name={"email"}
+            render={({
+              field: { value, onChange, onBlur },
+              fieldState: { error },
+            }) => (
+              <>
+                <InputWithIcon
+                  icon={<Mail color={error?.message ? "#ff5555" : "#323640"} />}
+                  value={value}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  keyboardType="email-address"
+                  error={!!error?.message}
+                />
+                {error && (
+                  <Text className="font-roboto-light-italic text-error">
+                    {error.message}
+                  </Text>
+                )}
+              </>
+            )}
           />
-        ) : (
-          <Load size="large" />
-        )}
-      </View>
-      <Link href="/signUp" className="flex-row ">
-        <Text className="text-white font-roboto-bold text-base">
-          {t("signIn.link.text")}
-        </Text>
-        <Text className="text-green font-roboto-bold-italic text-base">
-          {" "}
-          {t("signIn.link.text2")}
-        </Text>
-      </Link>
+          {!isLoading ? (
+            <View className="flex items-center bottom-1">
+              <Button
+                label={t("signIn.button")}
+                className="w-[200px] m-6"
+                onPress={handleSubmit(onSubmit)}
+              />
+              <View
+                className="flex flex-row justify-center items-center border-2 w-52 border-green rounded-lg bottom-2"
+                onTouchEnd={async () => {
+                  await signInWithGoogle();
+                }}
+              >
+                <GoogleLogo height={20} width={20} />
+                <Text className="text-white font-roboto-bold text-lg text-center p-2">
+                  {t("signIn.button-google")}
+                </Text>
+              </View>
+            </View>
+          ) : (
+            <Load size="large" />
+          )}
+        </View>
+        <Link href="/signUp" className="flex-row ">
+          <Text className="text-white font-roboto-bold text-base">
+            {t("signIn.link.text")}
+          </Text>
+          <Text className="text-green font-roboto-bold-italic text-base">
+            {" "}
+            {t("signIn.link.text2")}
+          </Text>
+        </Link>
+      </KeyboardAvoidingView>
     </View>
   );
 }

@@ -20,6 +20,7 @@
     "signIn": {
       "title": "Sign-In",
       "button": "Send",
+      "button-google": "Sign In",
       "link": {
         "text": "you don't have account?",
         "text2": "Sign-up"

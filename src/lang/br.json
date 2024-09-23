@@ -20,6 +20,7 @@
     "signIn": {
       "title": "Entrar",
       "button": "Enviar",
+      "button-google": "Entrar",
       "link": {
         "text": "Você ainda não tem uma conta?",
         "text2": "Registrar-se"
