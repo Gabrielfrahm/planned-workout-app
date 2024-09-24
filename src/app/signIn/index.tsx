@@ -59,13 +59,40 @@ export default function SignIn() {
   };
 
   const signInWithGoogle = async () => {
+    const isNet = await checkInternetConnectivity();
+
+    if (!isNet) {
+      Toast.show({
+        type: "error",
+        text1: "network error",
+      });
+    }
+
     try {
+      setIsLoading(true);
       await GoogleSignin.hasPlayServices();
-      const { data, type } = await GoogleSignin.signIn();
-      alert(JSON.stringify(data));
+      const { data } = await GoogleSignin.signIn();
+
+      await AuthService().authenticationGoogle({
+        email: data!.user.email,
+        name: data!.user.name!,
+      });
+
+      Toast.show({
+        type: "success",
+        text1: "Authenticated",
+        text2: "Enjoy and workout👋",
+        text1Style: { fontSize: 20 },
+      });
+      setIsLoading(false);
+      router.replace("/(tabs)");
     } catch (error) {
-      console.log("Error", error);
-      alert(JSON.stringify(error));
+      const err = error as AppError;
+      Toast.show({
+        type: "error",
+        text1: err.message,
+      });
+      setIsLoading(false);
     }
   };
 
@@ -113,7 +140,7 @@ export default function SignIn() {
                 onPress={handleSubmit(onSubmit)}
               />
               <View
-                className="flex flex-row justify-center items-center border-2 w-52 border-green rounded-lg bottom-2"
+                className="flex flex-row justify-center items-center border-2 w-56 border-green rounded-lg bottom-2"
                 onTouchEnd={async () => {
                   await signInWithGoogle();
                 }}

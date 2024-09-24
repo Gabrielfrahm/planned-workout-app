@@ -1,6 +1,7 @@
 export const ApiUrls = {
   auth: {
     authentications: (): string => `auth`,
+    authGoogle: (): string => `auth/google`,
   },
   user: {
     registerUser: (): string => `users`,

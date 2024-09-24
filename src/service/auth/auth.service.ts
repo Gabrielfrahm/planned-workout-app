@@ -1,6 +1,6 @@
 import api from "@/lib/api";
 import { ApiUrls } from "../api.url";
-import { AuthData } from "./auth.types";
+import { AuthData, AuthGoogleData } from "./auth.types";
 import { MMKVStorage } from "@/store/mmkv.store";
 import { useUserStore } from "@/store/user.store";
 
@@ -40,6 +40,29 @@ async function authenticateViaMMKV(authData: AuthData) {
   };
 }
 
+async function authenticateGoogle(authGoogleData: AuthGoogleData) {
+  const { setToken, setUserInfo } = useUserStore.getState();
+  try {
+    const response = await api.post(ApiUrls.auth.authGoogle(), authGoogleData);
+
+    MMKVStorage.set(`userInfo`, JSON.stringify(response.data.user));
+
+    setUserInfo(response.data.user);
+
+    MMKVStorage.set(`auth`, response.data.token);
+    setToken(response.data.token);
+    return response.data;
+  } catch (error) {
+    const err = error as {
+      message: string;
+    };
+    if (err.message.includes("Network Error")) {
+      return authenticateViaMMKV(authGoogleData);
+    }
+    throw err;
+  }
+}
+
 export const AuthService = (inMemory: boolean = false) => {
   const authentication = async (authData: AuthData) => {
     if (inMemory) {
@@ -49,5 +72,9 @@ export const AuthService = (inMemory: boolean = false) => {
     }
   };
 
-  return { authentication };
+  const authenticationGoogle = async (authGoogleData: AuthGoogleData) => {
+    return authenticateGoogle(authGoogleData);
+  };
+
+  return { authentication, authenticationGoogle };
 };

@@ -12,13 +12,7 @@ import {
 import { useConfigStore } from "@/store/config.store";
 import { useUserStore } from "@/store/user.store";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-GoogleSignin.configure({
-  // webClientId:
-  //   "1086702474746-8t2tv2lpvect8gkitv9gvb5a93qn7730.apps.googleusercontent.com",
-  // webClientId:
-  //   "1086702474746-2jvnhvdm9a44pasnd07enq1sn4l3vno8.apps.googleusercontent.com",
-  // offlineAccess: true,
-});
+GoogleSignin.configure({});
 export default function Index() {
   const isPassToBegging = useConfigStore((set) => set.isPassToBegging);
   const token = useUserStore((state) => state.token);

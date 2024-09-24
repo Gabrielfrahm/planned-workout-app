@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button";
 import { MMKVStorage } from "@/store/mmkv.store";
 import { UserInfo, useUserStore } from "@/store/user.store";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 
@@ -35,11 +36,12 @@ export default function Index() {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => {
+          onPress={async () => {
             MMKVStorage.delete("auth");
             setToken("");
             MMKVStorage.delete(`userInfo`);
             setUserInfo({} as UserInfo);
+            await GoogleSignin.signOut();
             router.replace("/signIn");
           }}
         >
